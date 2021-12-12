@@ -1,18 +1,12 @@
-import { CButton, CCollapse, CContainer, CNavbar, CNavbarNav, CNavbarToggler, CNavItem } from '@coreui/react';
+import { CCollapse, CContainer, CNavbar, CNavbarBrand, CNavbarNav, CNavbarToggler } from '@coreui/react';
 import React, { useState } from 'react';
-import { useWeb3React } from '@web3-react/core'
 import { Link } from 'react-router-dom';
-import { injected } from '../../connectors';
+import ConnectButton from './ConnectButton';
 
-const onConnect = () => {
-    const { ethereum } = window
-    ethereum.fire
-}
 
 const Navbar = () => {
 
     const [visible, setVisible] = useState(false)
-    const web3React = useWeb3React()
 
     return (
         <>
@@ -23,20 +17,17 @@ const Navbar = () => {
                         aria-expanded={visible}
                         onClick={() => setVisible(!visible)}
                     />
-                    <span style={{ color: "#B9BEC7" }}>Todo List</span>
-
+                    <CNavbarBrand href="#">
+                        TaskList
+                    </CNavbarBrand>
                     <CCollapse className="navbar-collapse" visible={visible}>
                         <CNavbarNav className="me-auto mb-2 mb-lg-0">
-                            <CNavItem>
-                                <Link to="/" className='custom-nav-link'>
-                                    Home
-                                </Link>
-                                <CButton onClick={}>
-                                    Connect
-                                </CButton>
-                            </CNavItem>
+                            <Link to="/" className='custom-nav-link'>
+                                Home
+                            </Link>
                         </CNavbarNav>
                     </CCollapse>
+                    <ConnectButton />
                 </CContainer>
             </CNavbar>
         </>

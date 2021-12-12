@@ -15,24 +15,10 @@ function getLibrary(provider) {
   return new Web3Provider(provider) // this will vary according to whether you use e.g. ethers or web3.js
 }
 
+
+
 const App = () => {
-  const context = useWeb3React()
-  const { connector, library, chainId, account, activate, deactivate, active, error } = context
-
-  const [activatingConnector, setActivatingConnector] = React.useState()
-
-
-  React.useEffect(() => {
-    if (activatingConnector && activatingConnector === connector) {
-      setActivatingConnector(undefined)
-    }
-  }, [activatingConnector, connector])
-
-  // handle logic to eagerly connect to the injected ethereum provider, if it exists and has granted access already
-  const triedEager = useEagerConnect()
-
-  // handle logic to connect in reaction to certain events on the injected ethereum provider, if it exists
-  useInactiveListener(!triedEager || !!activatingConnector)
+  
 
   return (
     <Web3ReactProvider getLibrary={getLibrary}>
