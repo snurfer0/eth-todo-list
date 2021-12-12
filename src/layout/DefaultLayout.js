@@ -3,14 +3,13 @@ import React, { Suspense } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import Navbar from '../components/items/Navbar';
 import HomePage from "../components/pages/HomePage";
-import ConnectWallet from '../components/items/ConnectWallet.js';
 
 class PublicLayout extends React.Component {
     render() {
         return (
             <>
                 <Navbar />
-                <ConnectWallet />
+                {/* <ConnectWallet /> */}
                 <div className="wrapper d-flex flex-column min-vh-100 bg-light">
                     <div className="body flex-grow-1 px-3">
                         <CContainer lg>

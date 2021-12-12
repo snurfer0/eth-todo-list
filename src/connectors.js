@@ -1,6 +1,3 @@
-import { Connectors } from 'web3-react'
-const { InjectedConnector } = Connectors
+import { InjectedConnector } from '@web3-react/injected-connector'
 
-const MetaMask = new InjectedConnector({ supportedNetworks: [1, 4] })
-
-export const connectors = { MetaMask }
+export const injected = new InjectedConnector({ supportedChainIds: [1337] })

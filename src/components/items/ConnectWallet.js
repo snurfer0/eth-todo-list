@@ -1,22 +1,22 @@
-import React, { useEffect } from 'react'
-import { useWeb3Context } from 'web3-react'
-import Loading from '../../animations/Loading'
+import { useWeb3React } from '@web3-react/core'
+import React from 'react'
+import { injected } from '../../connectors'
+
 
 // This component must be a child of <App> to have access to the appropriate context
-export default () => {
-    const context = useWeb3Context()
-    console.log(context)
+const WalletConnect = () => {
+    console.log("WalletConnect.js running..")
+    const web3React = useWeb3React()
+    const { account } = web3React
+    console.log(account)
 
-    useEffect(() => {
-        context.setFirstValidConnector(['MetaMask'])
-    }, [context])
+    React.useEffect(() => {
+        web3React.activate(injected)
+        console.log(web3React)
+    }, [])
 
-    if (!context.active && !context.error) {
-        return <Loading />
-    } else if (context.error) {
-        alert(context.error)
-        return <h1>{context.error}</h1>
-    } else {
-        return <h1>Account: {context.account}</h1>
-    }
+    console.log(web3React)
+
+    return <h1>sasati</h1>
 }
+export default WalletConnect
