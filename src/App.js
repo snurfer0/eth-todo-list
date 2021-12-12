@@ -1,25 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import Web3 from 'web3';
+import Web3Provider from 'web3-react';
+import Loading from './animations/Loading';
+import { connectors } from "./connectors";
+import './scss/style.scss';
 
-function App() {
+
+// Containers
+const DefaultLayout = React.lazy(() => import('./layout/DefaultLayout'))
+
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <Web3Provider connectors={connectors} libraryName={'web3.js'} web3Api={Web3}>
+      <Router>
+        <React.Suspense fallback={Loading()}>
+          <Switch>
+            <Route path="/" name="DefaultLayout" render={props => <DefaultLayout {...props} />} />
+          </Switch>
+        </React.Suspense>
+      </Router>
+    </Web3Provider >
+  )
 }
 
 export default App;

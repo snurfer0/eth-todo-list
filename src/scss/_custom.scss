@@ -1,0 +1,275 @@
+// Here you can add other styles
+
+// advertisement detail start
+
+.tile__ad {
+  width: 100%;
+  background: #fff;
+  border-radius: 5px;
+  box-shadow: 0px 2px 3px -1px rgba(151, 171, 187, 0.7);
+  float: left;
+  transform-style: preserve-3d;
+  margin: 10px 5px;
+}
+
+.header__ad {
+  border-bottom: 1px solid #ebeff2;
+  padding: 19px 0;
+  text-align: center;
+  color: #59687f;
+  font-size: 600;
+  font-size: 19px;
+  position: relative;
+}
+
+.banner-img__ad {
+  padding: 5px 5px 0;
+}
+
+.banner-img__ad img {
+  width: 100%;
+  border-radius: 5px;
+}
+
+.dates__ad {
+  border: 1px solid #ebeff2;
+  border-radius: 5px;
+  padding: 20px 0px;
+  margin: 10px 20px;
+  font-size: 16px;
+  color: #3c4b64;
+  font-weight: 600;
+  overflow: auto;
+}
+.dates__ad div {
+  float: left;
+  width: 50%;
+  text-align: center;
+  position: relative;
+}
+.dates__ad strong,
+.stats__ad strong {
+  display: block;
+  color: #adb8c2;
+  font-size: 11px;
+  font-weight: 700;
+}
+.dates__ad span {
+  width: 1px;
+  height: 40px;
+  position: absolute;
+  right: 0;
+  top: 0;
+  background: #ebeff2;
+}
+.stats__ad {
+  border-top: 1px solid #ebeff2;
+  background: #f7f8fa;
+  overflow: auto;
+  padding: 15px 0;
+  font-size: 16px;
+  color: #59687f;
+  font-weight: 600;
+  border-radius: 0 0 5px 5px;
+}
+.stats__ad div {
+  border-right: 1px solid #ebeff2;
+  width: 33.33333%;
+  float: left;
+  text-align: center;
+}
+
+.stats__ad div:nth-of-type(34) {
+  border: none;
+}
+
+div.footer__ad {
+  text-align: right;
+  position: relative;
+  margin: 20px 5px;
+}
+
+div.footer__ad a.Cbtn {
+  padding: 10px 25px;
+  background-color: #dadada;
+  color: #666;
+  margin: 10px 2px;
+  text-transform: uppercase;
+  font-weight: bold;
+  text-decoration: none;
+  border-radius: 3px;
+}
+
+div.footer__ad a.Cbtn-primary {
+  background-color: #5aadf2;
+  color: #fff;
+}
+
+div.footer__ad a.Cbtn-primary:hover {
+  background-color: #7dbef5;
+}
+
+div.footer__ad a.Cbtn-danger {
+  background-color: #fc5a5a;
+  color: #fff;
+}
+
+div.footer__ad a.Cbtn-danger:hover {
+  background-color: #fd7676;
+}
+
+// advertisement detail end
+
+.displayPreview {
+  display: inline-block;
+  position: relative;
+  width: 500px;
+  height: 300px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.textButton {
+  background: none !important;
+  border: none;
+  padding: 0 !important;
+  font-family: arial, sans-serif;
+  cursor: pointer;
+  color: #828c9c;
+}
+
+#public_logo {
+  height: 50px;
+}
+
+.custom-nav-link {
+  text-decoration: none;
+  color: #bac2cc;
+  margin: 10px;
+}
+
+.custom-nav-link:hover {
+  text-decoration: none;
+  color: white;
+  margin: 10px;
+}
+
+.custom-nav-link-dropdown {
+  display: block;
+  width: 100%;
+  padding: 0.25rem 1rem;
+  clear: both;
+  font-weight: 400;
+  color: #919aa8;
+  color: var(--cui-dropdown-link-color, #4f5d73);
+  text-align: inherit;
+  text-decoration: none;
+  white-space: nowrap;
+  background-color: transparent;
+  border: 0;
+}
+
+.custom-nav-link-dropdown:hover {
+  color: #bac2cc;
+}
+
+.flex-container {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  display: flex;
+}
+
+.flex-start {
+  justify-content: flex-start;
+}
+
+.space-between {
+  justify-content: space-between;
+}
+
+.display-card-button {
+  position: absolute;
+  top: 220px;
+  right: 10px;
+}
+
+// Orders Start
+
+.order_card {
+  cursor: pointer;
+  color: #000;
+  text-decoration: none !important;
+}
+
+// plus sign start
+
+.order_add_card {
+  height: 100%;
+  border-style: dashed;
+  border-width: 5px;
+  border-color: #7e8694;
+  background-color: #ebedef;
+  cursor: pointer;
+}
+
+.plus {
+  --b: 5px; /* the thickness */
+  width: 80px; /* the size */
+  aspect-ratio: 1/1;
+  border: 10px solid #7e8694; /* the outer space */
+  background: conic-gradient(from 90deg at var(--b) var(--b), #000 90deg, #ebedef 0)
+    calc(100% + var(--b) / 2) calc(100% + var(--b) / 2) / calc(50% + var(--b)) calc(50% + var(--b));
+  display: inline-block;
+  margin-left: calc(50% - 40px);
+  margin-top: calc(50% - 105px);
+  transition: transform 0.5s ease-in-out;
+}
+
+.plus:hover {
+  transform: rotate(180deg);
+}
+
+.alt {
+  border-color: #ebedef;
+  background: conic-gradient(from 90deg at var(--b) var(--b), #ebedef 90deg, #7e8694 0)
+    calc(100% + var(--b) / 2) calc(100% + var(--b) / 2) / calc(50% + var(--b)) calc(50% + var(--b));
+}
+
+// plus sign end
+
+// Orders End
+
+hr.new {
+  border-top: 2px dashed #fff;
+  margin: 0.4rem 0;
+}
+
+// order receipt start
+
+.horizontal-timeline .items {
+  border-top: 2px solid #ddd;
+}
+
+.horizontal-timeline .items .items-list {
+  position: relative;
+  margin-right: 0;
+}
+
+.horizontal-timeline .items .items-list:before {
+  content: '';
+  position: absolute;
+  height: 8px;
+  width: 8px;
+  border-radius: 50%;
+  background-color: #ddd;
+  top: 0;
+  margin-top: -5px;
+}
+
+.horizontal-timeline .items .items-list {
+  padding-top: 15px;
+}
+
+// order receipt end
