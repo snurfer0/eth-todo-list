@@ -1,7 +1,7 @@
 import { CTable, CTableBody, CTableDataCell, CTableHead, CTableHeaderCell, CTableRow } from '@coreui/react'
 import React from 'react'
-import { useWeb3React } from '@web3-react/core'
-import Web3 from 'web3'
+import { fetchTasks } from '../../store/actions'
+import { connect } from 'react-redux'
 
 const Task = ({ id, content, completed }) => {
     return (
@@ -19,29 +19,11 @@ const Task = ({ id, content, completed }) => {
     )
 }
 
-async function loadBlockchainData({ account }) {
-    const web3 = new Web3(Web3.givenProvider || "http://localhost:8545")
-    const todoList = new web3.eth.Contract(TODO_LIST_ABI, TODO_LIST_ADDRESS)
-    this.setState({ todoList })
-    const taskCount = await todoList.methods.taskCount().call()
-    this.setState({ taskCount })
-    for (var i = 1; i <= taskCount; i++) {
-        const task = await todoList.methods.tasks(i).call()
-        this.setState({
-            tasks: [...this.state.tasks, task]
-        })
-    }
-    this.setState({ loading: false })
-}
-
-
-const TaskList = props => {
-
-    const context = useWeb3React()
+const TaskList = ({ fetchTasks, tasks }) => {
 
     React.useEffect(() => {
-        loadBlockchainData(context)
-    }, [loadBlockchainData])
+        fetchTasks()
+    }, [fetchTasks])
 
     return (
         <CTable className='text-center'>
@@ -62,4 +44,13 @@ const TaskList = props => {
     )
 }
 
-export default TaskList
+const mapStateToProps = state => {
+    return {
+        tasks: state.tasks
+    };
+};
+
+export default connect(
+    mapStateToProps,
+    { fetchTasks }
+)(TaskList);
