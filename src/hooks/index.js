@@ -3,9 +3,7 @@ import React from "react";
 import { injected } from "../connectors";
 
 export function useEagerConnect() {
-    console.log("useEagerConnect running..")
     const { activate, active } = useWeb3React()
-
     const [tried, setTried] = React.useState(false)
 
     React.useEffect(() => {

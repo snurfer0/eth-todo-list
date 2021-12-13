@@ -18,7 +18,6 @@ const ConnectButton = () => {
     React.useEffect(() => {
         const conn = account !== undefined
         setConnected(conn)
-        console.log(connected)
     }, [account])
 
     React.useEffect(() => {
