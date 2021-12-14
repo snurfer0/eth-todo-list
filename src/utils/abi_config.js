@@ -1,5 +1,5 @@
 
-export const TODO_LIST_ADDRESS = '0x9a32eDC11Dc7231087A158813921096357ae1A21'
+export const TODO_LIST_ADDRESS = '0xfd3cfC9F5C048C459f55Ea2bEA75D6D9aaFaCaa0'
 
 
 export const TODO_LIST_ABI = [
@@ -86,6 +86,29 @@ export const TODO_LIST_ABI = [
             },
             {
                 "indexed": false,
+                "name": "content",
+                "type": "string"
+            },
+            {
+                "indexed": false,
+                "name": "completed",
+                "type": "bool"
+            }
+        ],
+        "name": "TaskDeleted",
+        "type": "event",
+        "signature": "0x4c96326c0143033e08b46e6eff1a9d46b9c5cb6bd853ddae7c776cd999b228bc"
+    },
+    {
+        "anonymous": false,
+        "inputs": [
+            {
+                "indexed": false,
+                "name": "id",
+                "type": "uint256"
+            },
+            {
+                "indexed": false,
                 "name": "completed",
                 "type": "bool"
             }
@@ -123,5 +146,20 @@ export const TODO_LIST_ABI = [
         "stateMutability": "nonpayable",
         "type": "function",
         "signature": "0x455f5024"
+    },
+    {
+        "constant": false,
+        "inputs": [
+            {
+                "name": "_id",
+                "type": "uint256"
+            }
+        ],
+        "name": "deleteTask",
+        "outputs": [],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "type": "function",
+        "signature": "0x560f3192"
     }
 ]

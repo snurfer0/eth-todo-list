@@ -1,56 +1,80 @@
-import { CTable, CTableBody, CTableDataCell, CTableHead, CTableHeaderCell, CTableRow } from '@coreui/react'
+import { CButton, CFormCheck, CFormInput, CInputGroup, CInputGroupText, CTable, CTableBody, CTableDataCell, CTableHead, CTableHeaderCell, CTableRow } from '@coreui/react'
+import { useWeb3React } from '@web3-react/core'
 import React from 'react'
-import { fetchTasks } from '../../store/actions'
 import { connect } from 'react-redux'
+import { createTask, fetchTasks, toggleCompleted, deleteTask } from '../../store/actions'
 
-const Task = ({ id, content, completed }) => {
+const Task = ({ task: { id, content, completed }, toggleCompleted, deleteTask, account }) => {
+
+    const onFormCheckChange = () => {
+        console.log(account)
+        toggleCompleted(account, id)
+    }
+
+    const onDeleteTask = () => {
+        deleteTask(account, id)
+    }
+
     return (
         <CTableRow>
             <CTableDataCell>{id}</CTableDataCell>
             <CTableDataCell>{content}</CTableDataCell>
             <CTableDataCell>
-                {completed
-                    ? <>Completed</>
-                    : <>Not Completed</>
-                }
+                <CFormCheck id="flexCheckDefault" checked={completed} onChange={onFormCheckChange} />
             </CTableDataCell>
-            <CTableDataCell>Not Implemented</CTableDataCell>
+            <CTableDataCell>
+                <CButton color="danger" onClick={onDeleteTask}> Delete </CButton>
+            </CTableDataCell>
         </CTableRow>
     )
 }
 
-const TaskList = ({ fetchTasks, tasks }) => {
+
+
+const TaskList = ({ fetchTasks, createTask, deleteTask, toggleCompleted, tasks }) => {
+
+    const context = useWeb3React()
 
     React.useEffect(() => {
         fetchTasks()
     }, [fetchTasks])
 
+    const handleEnterKey = e => {
+        if (e.key === 'Enter') createTask(context.account, e.target.value)
+    }
+
     return (
-        <CTable className='text-center'>
-            <CTableHead>
-                <CTableRow>
-                    <CTableHeaderCell scope="col">ID</CTableHeaderCell>
-                    <CTableHeaderCell scope="col">Content</CTableHeaderCell>
-                    <CTableHeaderCell scope="col">Completed</CTableHeaderCell>
-                    <CTableHeaderCell scope="col">Action</CTableHeaderCell>
-                </CTableRow>
-            </CTableHead>
-            <CTableBody>
-                {tasks && tasks.map(task => {
-                    return <Task {...task} key={task.id} />
-                })}
-            </CTableBody>
-        </CTable>
+        <>
+            <CInputGroup size="sm" className="mb-3 my-3">
+                <CInputGroupText id="inputGroup-sizing-sm">Task Content</CInputGroupText>
+                <CFormInput onKeyDown={handleEnterKey} aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" />
+            </CInputGroup>
+            <CTable className='text-center'>
+                <CTableHead>
+                    <CTableRow>
+                        <CTableHeaderCell scope="col">ID</CTableHeaderCell>
+                        <CTableHeaderCell scope="col">Content</CTableHeaderCell>
+                        <CTableHeaderCell scope="col">Completed</CTableHeaderCell>
+                        <CTableHeaderCell scope="col">Action</CTableHeaderCell>
+                    </CTableRow>
+                </CTableHead>
+                <CTableBody>
+                    {tasks && tasks.map(task => {
+                        return <Task key={task.id} toggleCompleted={(account, id) => toggleCompleted(account, id)} deleteTask={deleteTask} account={context.account} task={task} />
+                    })}
+                </CTableBody>
+            </CTable>
+        </>
     )
 }
 
 const mapStateToProps = state => {
     return {
-        tasks: state.tasks
+        tasks: state.tasks.tasks
     };
 };
 
 export default connect(
     mapStateToProps,
-    { fetchTasks }
+    { fetchTasks, createTask, toggleCompleted, deleteTask }
 )(TaskList);
